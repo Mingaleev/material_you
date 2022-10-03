@@ -1,5 +1,7 @@
 package ru.mingaleev.materialyou.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
+import ru.mingaleev.materialyou.utils.showToast
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayData
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayViewModel
-import ru.mingaleev.materialyou.utils.showToast
 
 class PictureOfTheDayFragment : Fragment() {
     private var _binding: FragmentPictureOfTheDayBinding? = null
@@ -29,6 +31,16 @@ class PictureOfTheDayFragment : Fragment() {
             .observe(viewLifecycleOwner) { renderData(it) }
         _binding = FragmentPictureOfTheDayBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.inputLayout.setEndIconOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://ru.wikipedia.org/wiki/${binding.inputEditText.text}")
+            })
+        }
     }
 
     private fun renderData(data: PictureOfTheDayData) {

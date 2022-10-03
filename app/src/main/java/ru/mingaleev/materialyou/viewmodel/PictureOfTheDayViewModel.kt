@@ -48,9 +48,8 @@ class PictureOfTheDayViewModel(
                     }
                 }
 
-                override fun onFailure(
-                    call: Call<PODServerResponseData>, t: Throwable
-                ) {
+                override fun onFailure(call: Call<PODServerResponseData>, t: Throwable) {
+                    liveDataForViewToObserve.value = PictureOfTheDayData.Error(Throwable(t))
                 }
             })
         }
