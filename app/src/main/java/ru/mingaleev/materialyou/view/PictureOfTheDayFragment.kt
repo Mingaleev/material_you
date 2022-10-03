@@ -3,15 +3,15 @@ package ru.mingaleev.materialyou.view
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import ru.mingaleev.materialyou.MainActivity
 import ru.mingaleev.materialyou.R
+import ru.mingaleev.materialyou.databinding.ActivityMainBinding
 import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
 import ru.mingaleev.materialyou.utils.showToast
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayData
@@ -39,13 +39,18 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+        setBottomAppBar(view)
         binding.inputLayout.setEndIconOnClickListener {
-            setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://ru.wikipedia.org/wiki/${binding.inputEditText.text}")
             })
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
 
     private fun renderData(data: PictureOfTheDayData) {
@@ -62,7 +67,6 @@ class PictureOfTheDayFragment : Fragment() {
                         placeholder (R.drawable.ic_no_photo_vector)
                         crossfade (true)
                     }
-
                 }
             }
             is PictureOfTheDayData.Loading -> {
@@ -78,6 +82,12 @@ class PictureOfTheDayFragment : Fragment() {
     private fun setBottomSheetBehavior(bottomSheet: ConstraintLayout) {
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+    }
+
+    private fun setBottomAppBar (view: View) {
+        val context = activity as MainActivity
+        context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
+        setHasOptionsMenu(true)
     }
 
     override fun onDestroyView() {
