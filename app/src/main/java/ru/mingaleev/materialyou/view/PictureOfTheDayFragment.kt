@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.ui.main
+package ru.mingaleev.materialyou.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
-import ru.mingaleev.materialyou.util.showToast
+import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayData
+import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayViewModel
+import ru.mingaleev.materialyou.utils.showToast
 
 class PictureOfTheDayFragment : Fragment() {
     private var _binding: FragmentPictureOfTheDayBinding? = null

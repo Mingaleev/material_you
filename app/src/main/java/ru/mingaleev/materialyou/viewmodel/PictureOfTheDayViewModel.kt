@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.ui.main
+package ru.mingaleev.materialyou.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +7,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.mingaleev.materialyou.BuildConfig
+import ru.mingaleev.materialyou.data.PODRetrofitImpl
+import ru.mingaleev.materialyou.data.PODServerResponseData
 
 class PictureOfTheDayViewModel(
     private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayData> =
@@ -49,7 +51,6 @@ class PictureOfTheDayViewModel(
                 override fun onFailure(
                     call: Call<PODServerResponseData>, t: Throwable
                 ) {
-
                 }
             })
         }

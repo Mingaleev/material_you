@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.ui.main
+package ru.mingaleev.materialyou.data
 
 import com.google.gson.annotations.SerializedName
 

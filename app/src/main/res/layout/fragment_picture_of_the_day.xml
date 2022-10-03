@@ -26,7 +26,7 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ru.mingaleev.materialyou.util.EquilateralImageView
+    <ru.mingaleev.materialyou.utils.EquilateralImageView
         android:id="@+id/image_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

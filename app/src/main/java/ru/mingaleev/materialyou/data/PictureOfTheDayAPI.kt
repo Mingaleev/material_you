@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.ui.main
+package ru.mingaleev.materialyou.data
 
 import retrofit2.Call
 import retrofit2.http.GET

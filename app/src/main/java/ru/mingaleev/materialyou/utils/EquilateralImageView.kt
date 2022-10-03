@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.util
+package ru.mingaleev.materialyou.utils
 
 import android.content.Context
 import android.util.AttributeSet

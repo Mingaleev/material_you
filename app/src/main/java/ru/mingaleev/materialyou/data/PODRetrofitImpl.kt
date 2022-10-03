@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.ui.main
+package ru.mingaleev.materialyou.data
 
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
@@ -27,6 +27,7 @@ class PODRetrofitImpl {
         httpClient.addInterceptor(
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         )
+
         return httpClient.build()
     }
 
