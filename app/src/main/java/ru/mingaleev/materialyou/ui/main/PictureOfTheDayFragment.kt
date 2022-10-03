@@ -1,16 +1,15 @@
 package ru.mingaleev.materialyou.ui.main
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
+import ru.mingaleev.materialyou.util.showToast
 
 class PictureOfTheDayFragment : Fragment() {
     private var _binding: FragmentPictureOfTheDayBinding? = null
@@ -36,13 +35,8 @@ class PictureOfTheDayFragment : Fragment() {
                 val serverResponseData = data.serverResponseData
                 val url = serverResponseData.url
                 if (url.isNullOrEmpty()) {
-                    //Отобразите ошибку //showError("Сообщение, что ссылка пустая") toast("Link is empty")
+                    context?.let { showToast("Link is empty", it) }
                 } else {
-                    //Отобразите фото
-                    //showSuccess()
-                    //Coil в работе: достаточно вызвать у нашего ImageView нужную extension - функцию и передать ссылку на изображение
-                    //а в лямбде указать дополнительные параметры (не обязательно) для отображения ошибки,
-                    // процесса загрузки, анимации смены изображений
                     binding.imageView.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
                         error (R.drawable.ic_load_error_vector)
@@ -56,16 +50,8 @@ class PictureOfTheDayFragment : Fragment() {
                 //showLoading()
             }
             is PictureOfTheDayData.Error -> {
+                context?.let { showToast(data.error.message, it) }
             }
-        }
-            //Отобразите ошибку //showError(data.error.message) toast(data.error.message)
-
-    }
-
-    private fun Fragment.toast(string: String?) {
-        Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
-            setGravity(Gravity.BOTTOM, 0, 250)
-            show()
         }
     }
 
