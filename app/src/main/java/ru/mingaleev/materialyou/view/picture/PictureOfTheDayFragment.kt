@@ -76,6 +76,17 @@ class PictureOfTheDayFragment : Fragment() {
                         crossfade(true)
                     }
                 }
+                if (serverResponseData.title.isNullOrEmpty()){
+                    context?.let { showToast("No title", it) }
+                } else {
+                    binding.title.text = serverResponseData.title
+                }
+
+                if (serverResponseData.explanation.isNullOrEmpty()){
+                    context?.let { showToast("No explanation", it) }
+                } else {
+                    binding.explanation.text = serverResponseData.explanation
+                }
             }
             is PictureOfTheDayData.Loading -> {
                 //Отобразите загрузку
