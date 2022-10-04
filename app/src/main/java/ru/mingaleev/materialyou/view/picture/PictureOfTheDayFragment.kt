@@ -14,6 +14,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.mingaleev.materialyou.MainActivity
 import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
+import ru.mingaleev.materialyou.utils.SELECT_DAY_DAY_BEFORE_YESTERDAY
+import ru.mingaleev.materialyou.utils.SELECT_DAY_TODAY
+import ru.mingaleev.materialyou.utils.SELECT_DAY_YESTERDAY
 import ru.mingaleev.materialyou.utils.showToast
 import ru.mingaleev.materialyou.view.chips.ChipsFragment
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayData
@@ -33,7 +36,7 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        viewModel.getData()
+        viewModel.getData(SELECT_DAY_TODAY)
             .observe(viewLifecycleOwner) { renderData(it) }
         _binding = FragmentPictureOfTheDayBinding.inflate(inflater, container, false)
         return binding.root
@@ -47,6 +50,16 @@ class PictureOfTheDayFragment : Fragment() {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("https://ru.wikipedia.org/wiki/${binding.inputEditText.text}")
             })
+        }
+
+        binding.today.setOnClickListener{
+            viewModel.getData(SELECT_DAY_TODAY)
+        }
+        binding.yesterday.setOnClickListener{
+            viewModel.getData(SELECT_DAY_YESTERDAY)
+        }
+        binding.dayBeforeYesterday.setOnClickListener{
+            viewModel.getData(SELECT_DAY_DAY_BEFORE_YESTERDAY)
         }
     }
 
