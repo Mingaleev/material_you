@@ -15,6 +15,7 @@ import ru.mingaleev.materialyou.MainActivity
 import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
 import ru.mingaleev.materialyou.utils.showToast
+import ru.mingaleev.materialyou.view.chips.ChipsFragment
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayData
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayViewModel
 
@@ -57,6 +58,8 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> context?.let { showToast("Favorite", it) }
+            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()
+                ?.add(R.id.container, ChipsFragment.newInstance())?.addToBackStack(null)?.commit()
         }
         return super.onOptionsItemSelected(item)
     }
