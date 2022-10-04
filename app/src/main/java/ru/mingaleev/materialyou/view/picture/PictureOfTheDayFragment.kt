@@ -1,17 +1,18 @@
-package ru.mingaleev.materialyou.view
+package ru.mingaleev.materialyou.view.picture
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.mingaleev.materialyou.MainActivity
 import ru.mingaleev.materialyou.R
-import ru.mingaleev.materialyou.databinding.ActivityMainBinding
 import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
 import ru.mingaleev.materialyou.utils.showToast
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayData
@@ -53,6 +54,13 @@ class PictureOfTheDayFragment : Fragment() {
         inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.app_bar_fav -> context?.let { showToast("Favorite", it) }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun renderData(data: PictureOfTheDayData) {
         when (data) {
             is PictureOfTheDayData.Success -> {
@@ -63,15 +71,14 @@ class PictureOfTheDayFragment : Fragment() {
                 } else {
                     binding.imageView.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
-                        error (R.drawable.ic_load_error_vector)
-                        placeholder (R.drawable.ic_no_photo_vector)
-                        crossfade (true)
+                        error(R.drawable.ic_load_error_vector)
+                        placeholder(R.drawable.ic_no_photo_vector)
+                        crossfade(true)
                     }
                 }
             }
             is PictureOfTheDayData.Loading -> {
                 //Отобразите загрузку
-                //showLoading()
             }
             is PictureOfTheDayData.Error -> {
                 context?.let { showToast(data.error.message, it) }
@@ -84,10 +91,25 @@ class PictureOfTheDayFragment : Fragment() {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
-    private fun setBottomAppBar (view: View) {
+    private fun setBottomAppBar(view: View) {
         val context = activity as MainActivity
         context.setSupportActionBar(view.findViewById(R.id.bottom_app_bar))
         setHasOptionsMenu(true)
+
+        binding.fab.setOnClickListener {
+            if (isMain) {
+                binding.bottomAppBar.navigationIcon = null
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_back_fab))
+                isMain = false
+            } else {
+                binding.bottomAppBar.navigationIcon =
+                    ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                binding.fab.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_plus_fab))
+                isMain = true
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -97,5 +119,6 @@ class PictureOfTheDayFragment : Fragment() {
 
     companion object {
         fun newInstance() = PictureOfTheDayFragment()
+        var isMain = true
     }
 }

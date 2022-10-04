@@ -4,4 +4,7 @@
     <string name="wiki_helper_text">Поищите термин в википедии</string> <string name="favourite">favourite</string>
     <string name="settings">settings</string>
     <string name="search">Search</string>
+    <string name="go_to_activity_1">На экран 1</string>
+    <string name="go_to_activity_2">На экран 2</string>
+
 </resources>

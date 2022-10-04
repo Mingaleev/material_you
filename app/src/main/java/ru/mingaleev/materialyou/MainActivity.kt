@@ -3,7 +3,7 @@ package ru.mingaleev.materialyou
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.mingaleev.materialyou.databinding.ActivityMainBinding
-import ru.mingaleev.materialyou.view.PictureOfTheDayFragment
+import ru.mingaleev.materialyou.view.picture.PictureOfTheDayFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
