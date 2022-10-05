@@ -17,7 +17,7 @@ import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
 import ru.mingaleev.materialyou.utils.SELECT_DAY_DAY_BEFORE_YESTERDAY
 import ru.mingaleev.materialyou.utils.SELECT_DAY_TODAY
 import ru.mingaleev.materialyou.utils.SELECT_DAY_YESTERDAY
-import ru.mingaleev.materialyou.utils.showToast
+import ru.mingaleev.materialyou.utils.toast
 import ru.mingaleev.materialyou.view.chips.ChipsFragment
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayData
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayViewModel
@@ -70,7 +70,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> context?.let { showToast("Favorite", it) }
+            R.id.app_bar_fav -> toast("Favorite")
             R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()
                 ?.add(R.id.container, ChipsFragment.newInstance())?.addToBackStack(null)?.commit()
         }
@@ -83,7 +83,7 @@ class PictureOfTheDayFragment : Fragment() {
                 val serverResponseData = data.serverResponseData
                 val url = serverResponseData.url
                 if (url.isNullOrEmpty()) {
-                    context?.let { showToast("Link is empty", it) }
+                    toast("Link is empty")
                 } else {
                     binding.imageView.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
@@ -93,13 +93,13 @@ class PictureOfTheDayFragment : Fragment() {
                     }
                 }
                 if (serverResponseData.title.isNullOrEmpty()){
-                    context?.let { showToast("No title", it) }
+                    toast("No title")
                 } else {
                     binding.title.text = serverResponseData.title
                 }
 
                 if (serverResponseData.explanation.isNullOrEmpty()){
-                    context?.let { showToast("No explanation", it) }
+                    toast("No explanation")
                 } else {
                     binding.explanation.text = serverResponseData.explanation
                 }
@@ -108,7 +108,7 @@ class PictureOfTheDayFragment : Fragment() {
                 //Отобразите загрузку
             }
             is PictureOfTheDayData.Error -> {
-                context?.let { showToast(data.error.message, it) }
+                toast(data.error.message)
             }
         }
     }

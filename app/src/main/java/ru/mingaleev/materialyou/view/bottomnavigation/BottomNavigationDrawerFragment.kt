@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.BottomNavigationLayoutBinding
-import ru.mingaleev.materialyou.utils.showToast
+import ru.mingaleev.materialyou.utils.toast
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -30,8 +29,8 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_one -> context?.let { showToast("1", it) }
-                R.id.navigation_two -> context?.let { showToast("2", it) }
+                R.id.navigation_one -> toast("1")
+                R.id.navigation_two -> toast("2")
             }
             true
         }

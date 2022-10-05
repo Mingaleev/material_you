@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import ru.mingaleev.materialyou.databinding.FragmentChipsBinding
-import ru.mingaleev.materialyou.utils.showToast
+import ru.mingaleev.materialyou.utils.toast
 
 class ChipsFragment : Fragment() {
 
@@ -26,12 +26,12 @@ class ChipsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.chipGroup.setOnCheckedChangeListener { chipGroup, position ->
             chipGroup.findViewById<Chip>(position)?.let { chipId ->
-                context?.let { showToast("Выбран ${chipId.text}", it) }
+                toast("Выбран ${chipId.text}")
             }
         }
 
         binding.chipClose.setOnCloseIconClickListener {
-            context?.let { showToast("Close is Clicked", it) }
+            toast("Close is Clicked")
         }
     }
 
