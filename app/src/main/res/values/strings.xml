@@ -9,5 +9,10 @@
     <string name="today">Сегодня</string>
     <string name="yesterday">Вчера</string>
     <string name="day_before_yesterday">Позавчера</string>
+    <string name="to_screen_one">Выбран экран 1</string>
+    <string name="to_screen_two">Выбран экран 2</string>
+    <string name="click_on_the_button_fav">Favorite</string>
+    <string name="error_no_title">No title</string>
+    <string name="error_no_explanation">No explanation</string>
 
 </resources>

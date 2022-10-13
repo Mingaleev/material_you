@@ -18,6 +18,7 @@ import ru.mingaleev.materialyou.utils.SELECT_DAY_DAY_BEFORE_YESTERDAY
 import ru.mingaleev.materialyou.utils.SELECT_DAY_TODAY
 import ru.mingaleev.materialyou.utils.SELECT_DAY_YESTERDAY
 import ru.mingaleev.materialyou.utils.toast
+import ru.mingaleev.materialyou.view.bottomnavigation.BottomNavigationDrawerFragment
 import ru.mingaleev.materialyou.view.chips.ChipsFragment
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayData
 import ru.mingaleev.materialyou.viewmodel.PictureOfTheDayViewModel
@@ -70,9 +71,14 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> toast("Favorite")
+            R.id.app_bar_fav -> toast(getString(R.string.click_on_the_button_fav))
             R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()
                 ?.add(R.id.container, ChipsFragment.newInstance())?.addToBackStack(null)?.commit()
+            android.R.id.home -> {
+                activity?.let {
+                    BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -93,13 +99,13 @@ class PictureOfTheDayFragment : Fragment() {
                     }
                 }
                 if (serverResponseData.title.isNullOrEmpty()){
-                    toast("No title")
+                    toast(getString(R.string.error_no_title))
                 } else {
                     binding.title.text = serverResponseData.title
                 }
 
                 if (serverResponseData.explanation.isNullOrEmpty()){
-                    toast("No explanation")
+                    toast(getString(R.string.error_no_explanation))
                 } else {
                     binding.explanation.text = serverResponseData.explanation
                 }
