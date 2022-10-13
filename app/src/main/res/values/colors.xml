@@ -10,4 +10,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_gray">#66000000</color>
+
+    <color name="light_gray">#a7c0cd</color>
+    <color name="indigo">#6002ee</color>
+    <color name="indigo_dark">#0000ba</color>
+    <color name="indigo_light">#9c47ff</color>
+    <color name="green">#FF03DAC5</color>
+
+    <color name="pink">#e040fb</color>
+    <color name="pink_dark">#aa00c7</color>
+    <color name="pink_light">#ff79ff</color>
 </resources>
