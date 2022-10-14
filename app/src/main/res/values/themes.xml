@@ -28,7 +28,6 @@
 
 <!--        <item name="fontFamily">@font/roboto_slab</item>-->
 <!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
-
     </style>
 
     <style name="AppTheme" parent="Theme.MaterialYou">
@@ -53,5 +52,4 @@
         <item name="colorOnSecondary">@color/pink_light</item>
         <item name="themeColorPrimary">@color/pink</item>
     </style>
-
 </resources>

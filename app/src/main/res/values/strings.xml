@@ -14,5 +14,9 @@
     <string name="click_on_the_button_fav">Favorite</string>
     <string name="error_no_title">No title</string>
     <string name="error_no_explanation">No explanation</string>
+    <string name="text_settings_theme">Выберите тему</string>
+    <string name="themeIndigo">Индиго</string>
+    <string name="themePink">Розовая</string>
+
 
 </resources>
