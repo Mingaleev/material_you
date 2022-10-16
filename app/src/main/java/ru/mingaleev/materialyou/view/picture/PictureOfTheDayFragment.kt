@@ -74,7 +74,7 @@ class PictureOfTheDayFragment : Fragment() {
         when (item.itemId) {
             R.id.app_bar_fav -> toast(getString(R.string.click_on_the_button_fav))
             R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()
-                ?.add(R.id.container, SettingsFragment.newInstance())?.addToBackStack(null)?.commit()
+                ?.replace(R.id.container, SettingsFragment.newInstance())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")

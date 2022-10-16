@@ -28,6 +28,11 @@ class SettingsFragment : Fragment() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         val editor = sharedPref?.edit()
 
+        when (sharedPref?.getString(KEY_APP_THEME, "")) {
+            "Pink" -> binding.chipPink.isChecked = true
+            "Indigo" -> binding.chipIndigo.isChecked = true
+        }
+
         binding.chipIndigo.setOnClickListener {
             binding.chipPink.isChecked = false
             activity?.setTheme(R.style.IndigoTheme)
