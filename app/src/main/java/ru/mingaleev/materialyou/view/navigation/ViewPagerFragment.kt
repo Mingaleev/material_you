@@ -23,6 +23,7 @@ class ViewPagerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewPager.adapter = activity?.let { ViewPagerAdapter(it.supportFragmentManager) }
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
 
     override fun onDestroyView() {
