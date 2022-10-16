@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.FragmentSettingsBinding
 import ru.mingaleev.materialyou.utils.KEY_APP_THEME
+import ru.mingaleev.materialyou.utils.NAME_THEME_INDIGO
+import ru.mingaleev.materialyou.utils.NAME_THEME_PINK
 
 class SettingsFragment : Fragment() {
 
@@ -29,21 +31,21 @@ class SettingsFragment : Fragment() {
         val editor = sharedPref?.edit()
 
         when (sharedPref?.getString(KEY_APP_THEME, "")) {
-            "Pink" -> binding.chipPink.isChecked = true
-            "Indigo" -> binding.chipIndigo.isChecked = true
+            NAME_THEME_PINK -> binding.chipPink.isChecked = true
+            NAME_THEME_INDIGO -> binding.chipIndigo.isChecked = true
         }
 
         binding.chipIndigo.setOnClickListener {
             binding.chipPink.isChecked = false
             activity?.setTheme(R.style.IndigoTheme)
-            editor?.putString(KEY_APP_THEME, "Indigo")?.apply()
+            editor?.putString(KEY_APP_THEME, NAME_THEME_INDIGO)?.apply()
             activity?.recreate()
         }
 
         binding.chipPink.setOnClickListener {
             binding.chipIndigo.isChecked = false
             activity?.setTheme(R.style.PinkTheme)
-            editor?.putString(KEY_APP_THEME, "Pink")?.apply()
+            editor?.putString(KEY_APP_THEME, NAME_THEME_PINK)?.apply()
             activity?.recreate()
         }
     }
