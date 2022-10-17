@@ -67,8 +67,9 @@ class PictureOfTheDayViewModel(
         val calendar = Calendar.getInstance()
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         when (day) {
-            SELECT_DAY_YESTERDAY -> calendar.add(Calendar.DATE, -1)
-            SELECT_DAY_DAY_BEFORE_YESTERDAY -> calendar.add(Calendar.DATE, -2)
+            SELECT_DAY_TODAY -> calendar.add(Calendar.HOUR, -7)
+            SELECT_DAY_YESTERDAY -> calendar.add(Calendar.HOUR, -31)
+            SELECT_DAY_DAY_BEFORE_YESTERDAY -> calendar.add(Calendar.HOUR, -55)
         }
         return formatter.format(calendar.time)
     }

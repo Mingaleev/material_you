@@ -39,39 +39,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/input_layout"
-                app:singleSelection="true"
-                >
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/day_before_yesterday"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/day_before_yesterday"
-                    />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/yesterday"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/yesterday"
-                    />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/today"
-                    android:checked="true"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/today"
-                    />
-            </com.google.android.material.chip.ChipGroup>
 
             <ru.mingaleev.materialyou.utils.EquilateralImageView
                 android:id="@+id/image_view"
@@ -79,10 +47,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="@string/photo_of_the_day_stub"
-                app:layout_constraintBottom_toTopOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chipGroup"
                 app:srcCompat="@drawable/ic_no_photo_vector" />
 
             <TextView
@@ -103,49 +70,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bottomLine"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
-
-            <View
-                android:id="@+id/bottomLine"
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_marginTop="80dp"
-                android:background="#663b4351"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/explanation" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <include layout="@layout/bottom_sheet_layout" />
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:backgroundTint="@color/colorPrimary"
-        app:fabAlignmentMode="center"
-        app:fabCradleMargin="4dp"
-        app:fabCradleRoundedCornerRadius="20dp"
-        app:fabAnimationMode = "scale"
-        app:hideOnScroll="true"
-        app:layout_scrollFlags = "scroll|enterAlways"
-        app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_anchor="@id/bottom_app_bar"
-        app:srcCompat="@drawable/ic_plus_fab"
-        app:tint="@color/white" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

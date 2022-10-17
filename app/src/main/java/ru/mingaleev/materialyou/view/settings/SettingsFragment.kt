@@ -38,14 +38,14 @@ class SettingsFragment : Fragment() {
         binding.chipIndigo.setOnClickListener {
             binding.chipPink.isChecked = false
             activity?.setTheme(R.style.IndigoTheme)
-            editor?.putString(KEY_APP_THEME, NAME_THEME_INDIGO)?.apply()
+            editor?.putString(KEY_APP_THEME, NAME_THEME_INDIGO)?.commit()
             activity?.recreate()
         }
 
         binding.chipPink.setOnClickListener {
             binding.chipIndigo.isChecked = false
             activity?.setTheme(R.style.PinkTheme)
-            editor?.putString(KEY_APP_THEME, NAME_THEME_PINK)?.apply()
+            editor?.putString(KEY_APP_THEME, NAME_THEME_PINK)?.commit()
             activity?.recreate()
         }
     }

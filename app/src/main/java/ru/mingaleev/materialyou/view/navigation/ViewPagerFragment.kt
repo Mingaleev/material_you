@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.FragmentViewPagerBinding
 
 
@@ -34,10 +35,10 @@ class ViewPagerFragment : Fragment() {
             override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
                 tab.text = position.toString()
                 return when (position) {
-                    0 -> tab.text = "Земля"
-                    1 -> tab.text = "Марс"
-                    2 -> tab.text = "Система"
-                    else -> tab.text = "Земля"
+                    0 -> tab.text = getString(R.string.today)
+                    1 -> tab.text = getString(R.string.yesterday)
+                    2 -> tab.text = getString(R.string.day_before_yesterday)
+                    else -> tab.text = getString(R.string.today)
                 }
             }
         }).attach()

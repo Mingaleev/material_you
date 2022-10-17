@@ -17,6 +17,9 @@
     <string name="text_settings_theme">Выберите тему</string>
     <string name="themeIndigo">Индиго</string>
     <string name="themePink">Розовая</string>
+    <string name="btn_bottom_view_one">Фото дня</string>
+    <string name="btn_bottom_view_two">Земля</string>
+    <string name="btn_bottom_view_three">Марс</string>
 
 
 </resources>
