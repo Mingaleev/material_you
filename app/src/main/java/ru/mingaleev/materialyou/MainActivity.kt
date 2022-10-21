@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.mingaleev.materialyou.databinding.ActivityMainBinding
 import ru.mingaleev.materialyou.utils.KEY_APP_THEME
+import ru.mingaleev.materialyou.view.constraint.ConstraintFragment
 import ru.mingaleev.materialyou.view.navigation.EarthFragment
 import ru.mingaleev.materialyou.view.navigation.MarsFragment
 import ru.mingaleev.materialyou.view.navigation.ViewPagerFragment
@@ -34,6 +35,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.bottom_view_mars -> {
                     navigateTo(MarsFragment()); true
+                }
+                R.id.bottom_view_constraint -> {
+                    navigateTo(ConstraintFragment()); true
                 }
                 else -> true
             }
