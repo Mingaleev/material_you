@@ -16,6 +16,10 @@
         <item
             android:id="@+id/bottom_view_constraint"
             android:icon="@drawable/ic_settings_menu"
-            android:title="@string/settings" />
+            android:title="@string/coordinator" />
+        <item
+            android:id="@+id/bottom_view_motion"
+            android:icon="@drawable/ic_settings_menu"
+            android:title="@string/motion" />
     </group>
 </menu>

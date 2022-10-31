@@ -8,6 +8,7 @@ import ru.mingaleev.materialyou.databinding.ActivityMainBinding
 import ru.mingaleev.materialyou.utils.KEY_APP_THEME
 import ru.mingaleev.materialyou.view.fragments.ConstraintFragment
 import ru.mingaleev.materialyou.view.fragments.CoordinatorFragment
+import ru.mingaleev.materialyou.view.fragments.MotionFragment
 import ru.mingaleev.materialyou.view.navigation.EarthFragment
 import ru.mingaleev.materialyou.view.navigation.MarsFragment
 import ru.mingaleev.materialyou.view.navigation.ViewPagerFragment
@@ -38,6 +39,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.bottom_view_constraint -> {
                     navigateTo(CoordinatorFragment()); true
+                }
+                R.id.bottom_view_motion -> {
+                    navigateTo(MotionFragment()); true
                 }
                 else -> true
             }

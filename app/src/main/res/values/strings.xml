@@ -3,6 +3,8 @@
     <string name="photo_of_the_day_stub">Photo of the day</string> <string name="search_wiki">Найти в Википедии</string>
     <string name="wiki_helper_text">Поищите термин в википедии</string> <string name="favourite">favourite</string>
     <string name="settings">settings</string>
+    <string name="coordinator">Coordinator</string>
+    <string name="motion">Motion</string>
     <string name="search">Search</string>
     <string name="go_to_activity_1">На экран 1</string>
     <string name="go_to_activity_2">На экран 2</string>
