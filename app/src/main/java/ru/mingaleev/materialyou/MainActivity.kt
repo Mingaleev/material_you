@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.mingaleev.materialyou.databinding.ActivityMainBinding
 import ru.mingaleev.materialyou.utils.KEY_APP_THEME
-import ru.mingaleev.materialyou.view.constraint.ConstraintFragment
+import ru.mingaleev.materialyou.view.fragments.ConstraintFragment
+import ru.mingaleev.materialyou.view.fragments.CoordinatorFragment
 import ru.mingaleev.materialyou.view.navigation.EarthFragment
 import ru.mingaleev.materialyou.view.navigation.MarsFragment
 import ru.mingaleev.materialyou.view.navigation.ViewPagerFragment
-import ru.mingaleev.materialyou.view.settings.SettingsFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                     navigateTo(MarsFragment()); true
                 }
                 R.id.bottom_view_constraint -> {
-                    navigateTo(ConstraintFragment()); true
+                    navigateTo(CoordinatorFragment()); true
                 }
                 else -> true
             }
