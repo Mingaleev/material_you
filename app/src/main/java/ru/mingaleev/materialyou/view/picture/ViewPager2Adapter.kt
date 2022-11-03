@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.view.navigation
+package ru.mingaleev.materialyou.view.picture
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

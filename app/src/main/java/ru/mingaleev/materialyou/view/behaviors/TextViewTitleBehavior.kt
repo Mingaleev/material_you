@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.view.fragments.behaviors
+package ru.mingaleev.materialyou.view.behaviors
 
 import android.content.Context
 import android.util.AttributeSet

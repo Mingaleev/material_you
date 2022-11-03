@@ -34,14 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        app:layout_behavior=".view.fragments.behaviors.TextViewTitleBehavior"
+        app:layout_behavior=".view.behaviors.TextViewTitleBehavior"
         android:textSize="36sp"
         android:text="@string/large_text_title"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior=".view.fragments.behaviors.NestedBehavior"
+        app:layout_behavior=".view.behaviors.NestedBehavior"
         tools:context=".ScrollingActivity">
 
         <TextView
@@ -54,7 +54,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_behavior=".view.fragments.behaviors.MyBehaviorButtonOne"
+        app:layout_behavior=".view.behaviors.MyBehaviorButtonOne"
         android:text="1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
