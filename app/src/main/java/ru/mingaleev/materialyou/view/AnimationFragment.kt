@@ -1,14 +1,12 @@
 package ru.mingaleev.materialyou.view
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.transition.ChangeBounds
-import androidx.transition.Fade
-import androidx.transition.TransitionManager
-import androidx.transition.TransitionSet
+import androidx.transition.*
 import ru.mingaleev.materialyou.databinding.FragmentAnimationBinding
 
 class AnimationFragment : Fragment() {
@@ -33,11 +31,12 @@ class AnimationFragment : Fragment() {
             flagVisibilityTextView = !flagVisibilityTextView
             val myAutoTransition = TransitionSet()
             myAutoTransition.ordering = TransitionSet.ORDERING_TOGETHER
-            val fade = Fade()
+            val slide = Slide(Gravity.START)
             val changeBounds = ChangeBounds()
 
-            myAutoTransition.addTransition(fade)
+            myAutoTransition.duration = 800L
             myAutoTransition.addTransition(changeBounds)
+            myAutoTransition.addTransition(slide)
 
             TransitionManager.beginDelayedTransition(binding.transitionContainer, myAutoTransition)
             binding.textViewAnimation.visibility = if (flagVisibilityTextView) View.VISIBLE else View.GONE

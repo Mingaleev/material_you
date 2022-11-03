@@ -29,13 +29,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.bottom_view_constraint -> {
                     navigateTo(CoordinatorFragment()); true
                 }
-                R.id.bottom_view_motion -> {
+                R.id.bottom_view_animation -> {
                     navigateTo(AnimationFragment()); true
                 }
                 else -> true
             }
         }
-        binding.bottomNavigationView.selectedItemId = R.id.bottom_view_pictures
+        binding.bottomNavigationView.selectedItemId = R.id.bottom_view_animation
 
         val badge = binding.bottomNavigationView.getOrCreateBadge(R.id.bottom_view_pictures)
         badge.number = 3

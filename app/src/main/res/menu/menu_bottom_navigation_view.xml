@@ -18,7 +18,7 @@
             android:icon="@drawable/ic_settings_menu"
             android:title="@string/coordinator" />
         <item
-            android:id="@+id/bottom_view_motion"
+            android:id="@+id/bottom_view_animation"
             android:icon="@drawable/ic_settings_menu"
             android:title="@string/animation" />
     </group>
