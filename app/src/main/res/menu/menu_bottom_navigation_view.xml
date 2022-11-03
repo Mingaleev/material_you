@@ -20,6 +20,6 @@
         <item
             android:id="@+id/bottom_view_motion"
             android:icon="@drawable/ic_settings_menu"
-            android:title="@string/motion" />
+            android:title="@string/animation" />
     </group>
 </menu>

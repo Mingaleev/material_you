@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import ru.mingaleev.materialyou.databinding.ActivityMainBinding
-import ru.mingaleev.materialyou.view.CoordinatorFragment
-import ru.mingaleev.materialyou.view.MotionFragment
-import ru.mingaleev.materialyou.view.EarthFragment
-import ru.mingaleev.materialyou.view.MarsFragment
+import ru.mingaleev.materialyou.view.*
 import ru.mingaleev.materialyou.view.picture.ViewPagerFragment
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                     navigateTo(CoordinatorFragment()); true
                 }
                 R.id.bottom_view_motion -> {
-                    navigateTo(MotionFragment()); true
+                    navigateTo(AnimationFragment()); true
                 }
                 else -> true
             }
