@@ -1,5 +1,6 @@
 package ru.mingaleev.materialyou.view
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.transition.Explode
+import androidx.transition.Transition
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import ru.mingaleev.materialyou.R
@@ -17,8 +19,6 @@ class AnimationFragment : Fragment() {
 
     private var _binding: FragmentAnimationBinding? = null
     private val binding get() = _binding!!
-
-    private var flagVisibilityTextView = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,9 +30,6 @@ class AnimationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        flagVisibilityTextView = !flagVisibilityTextView
-
         binding.recyclerView.adapter = Adapter()
     }
 
@@ -46,8 +43,16 @@ class AnimationFragment : Fragment() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.itemView.setOnClickListener {
+
+                val rect = Rect()
+                it.getGlobalVisibleRect(rect)
                 val myAutoTransition = TransitionSet()
                 val explode = Explode()
+                explode.epicenterCallback = object : Transition.EpicenterCallback() {
+                    override fun onGetEpicenter(transition: Transition): Rect {
+                        return rect
+                    }
+                }
 
                 myAutoTransition.addTransition(explode)
                 myAutoTransition.duration = 1000L
