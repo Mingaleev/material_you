@@ -69,4 +69,9 @@ class AnimationFragment : Fragment() {
         inner class MyViewHolder(view: View) : ViewHolder(view)
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

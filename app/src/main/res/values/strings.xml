@@ -3,9 +3,6 @@
     <string name="photo_of_the_day_stub">Photo of the day</string> <string name="search_wiki">Найти в Википедии</string>
     <string name="wiki_helper_text">Поищите термин в википедии</string> <string name="favourite">favourite</string>
     <string name="settings">settings</string>
-    <string name="coordinator">Coordinator</string>
-    <string name="motion">Motion</string>
-    <string name="animation">Анимации</string>
     <string name="search">Search</string>
     <string name="go_to_activity_1">На экран 1</string>
     <string name="go_to_activity_2">На экран 2</string>
@@ -20,9 +17,13 @@
     <string name="text_settings_theme">Выберите тему</string>
     <string name="themeIndigo">Индиго</string>
     <string name="themePink">Розовая</string>
+
     <string name="btn_bottom_view_one">Фото дня</string>
     <string name="btn_bottom_view_two">Земля</string>
-    <string name="btn_bottom_view_three">Марс</string>
+    <string name="btn_bottom_view_three">Картинка</string>
+    <string name="btn_bottom_view_four">Coordinator</string>
+    <string name="btn_bottom_view_five">Анимация</string>
+
     <string name="large_text_title"> Material is the metaphor </string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

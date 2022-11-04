@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.bottom_view_earth -> {
                     navigateTo(EarthFragment()); true
                 }
-                R.id.bottom_view_mars -> {
-                    navigateTo(MarsFragment()); true
+                R.id.bottom_view_animation_image -> {
+                    navigateTo(AnimationImageZoomFragment()); true
                 }
                 R.id.bottom_view_constraint -> {
                     navigateTo(CoordinatorFragment()); true

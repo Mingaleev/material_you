@@ -10,16 +10,16 @@
             android:icon="@drawable/ic_earth"
             android:title="@string/btn_bottom_view_two" />
         <item
-            android:id="@+id/bottom_view_mars"
+            android:id="@+id/bottom_view_animation_image"
             android:icon="@drawable/ic_mars"
             android:title="@string/btn_bottom_view_three" />
         <item
             android:id="@+id/bottom_view_constraint"
             android:icon="@drawable/ic_settings_menu"
-            android:title="@string/coordinator" />
+            android:title="@string/btn_bottom_view_four" />
         <item
             android:id="@+id/bottom_view_animation"
             android:icon="@drawable/ic_settings_menu"
-            android:title="@string/animation" />
+            android:title="@string/btn_bottom_view_five" />
     </group>
 </menu>
