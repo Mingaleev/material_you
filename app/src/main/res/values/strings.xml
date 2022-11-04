@@ -117,6 +117,7 @@
     <string name="animate">Animate</string>
     <string name="transition_example">Transition example</string>
     <string name="tap_on_me">TAP ON ME</string>
+    <string name="path">Path</string>
 
 
 </resources>

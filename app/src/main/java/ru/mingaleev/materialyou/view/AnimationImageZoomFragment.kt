@@ -35,7 +35,8 @@ class AnimationImageZoomFragment : Fragment() {
             val changeImageTransform = ChangeImageTransform()
 
             TransitionManager.beginDelayedTransition(binding.root, changeImageTransform)
-            binding.imageViewAnimation.scaleType = if (isFlag) ImageView.ScaleType.CENTER_INSIDE else ImageView.ScaleType.CENTER_CROP
+            binding.imageViewAnimation.scaleType =
+                if (isFlag) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.CENTER_INSIDE
         }
     }
 
