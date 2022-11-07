@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateTo(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+        val commit = supportFragmentManager.beginTransaction().setCustomAnimations(
+            R.anim.slide_in,
+            R.anim.fade_out
+        ).replace(R.id.container, fragment).commit()
     }
 }
