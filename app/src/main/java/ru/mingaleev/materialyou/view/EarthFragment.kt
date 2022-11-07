@@ -16,7 +16,7 @@ class EarthFragment: Fragment() {
     private val binding get() = _binding!!
 
     private var isFlag = false
-    private val duration = 1000L
+    private val duration = 500L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

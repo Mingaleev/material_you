@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsetsAnimation.Bounds
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.transition.ChangeImageTransform
+import androidx.transition.TransitionManager
 import coil.load
 import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.databinding.FragmentPictureOfTheDayBinding
@@ -57,6 +60,8 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                         placeholder(R.drawable.ic_no_photo_vector)
                         crossfade(true)
                     }
+                    TransitionManager.beginDelayedTransition(binding.root)
+                    binding.imageView.visibility = View.VISIBLE
                 }
                 if (serverResponseData.title.isNullOrEmpty()){
                     toast(getString(R.string.error_no_title))

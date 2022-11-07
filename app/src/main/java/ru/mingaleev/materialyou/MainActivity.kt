@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 else -> true
             }
         }
-        binding.bottomNavigationView.selectedItemId = R.id.bottom_view_animation
+        binding.bottomNavigationView.selectedItemId = R.id.bottom_view_pictures
 
         val badge = binding.bottomNavigationView.getOrCreateBadge(R.id.bottom_view_pictures)
         badge.number = 3
