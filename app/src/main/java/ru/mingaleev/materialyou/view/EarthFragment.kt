@@ -61,7 +61,6 @@ class EarthFragment: Fragment() {
                 ObjectAnimator.ofFloat(binding.optionTwoContainer, View.TRANSLATION_Y, 0f).setDuration(duration).start()
                 ObjectAnimator.ofFloat(binding.transitionBackground, View.ALPHA, 0f).setDuration(duration).start()
 
-
                 binding.optionOneContainer.animate().alpha(0f).setDuration(duration).setListener(
                     object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator?) {
