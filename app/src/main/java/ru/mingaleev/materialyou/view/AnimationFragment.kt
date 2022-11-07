@@ -1,22 +1,15 @@
 package ru.mingaleev.materialyou.view
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnticipateOvershootInterpolator
-import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.transition.ArcMotion
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import ru.mingaleev.materialyou.R
-import ru.mingaleev.materialyou.databinding.FragmentAnimationBinding
 import ru.mingaleev.materialyou.databinding.FragmentAnimationStartBinding
 
 class AnimationFragment : Fragment() {
@@ -36,23 +29,27 @@ class AnimationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val constraintSetStart = ConstraintSet()
-        val constraintSetEnd = ConstraintSet()
-        constraintSetStart.clone(context, R.layout.fragment_animation_start)
-        constraintSetEnd.clone(context, R.layout.fragment_animation_end)
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(context, R.layout.fragment_animation_start)
 
         binding.tap.setOnClickListener() {
             isFlag = !isFlag
-
             val changeBounds = ChangeBounds()
             changeBounds.duration = 1000L
             changeBounds.interpolator = AnticipateOvershootInterpolator(3.0f)
             TransitionManager.beginDelayedTransition(binding.constraintContainer, changeBounds)
+
             if (isFlag) {
-                constraintSetEnd.applyTo(binding.constraintContainer)
+                constraintSet.connect(R.id.title, ConstraintSet.RIGHT, R.id.backgroundImage, ConstraintSet.RIGHT)
+                constraintSet.clear(R.id.description, ConstraintSet.TOP)
+                constraintSet.connect(R.id.description, ConstraintSet.BOTTOM, R.id.backgroundImage, ConstraintSet.BOTTOM
+                )
             } else {
-                constraintSetStart.applyTo(binding.constraintContainer)
+                constraintSet.connect(R.id.title, ConstraintSet.RIGHT, R.id.backgroundImage, ConstraintSet.LEFT)
+                constraintSet.clear(R.id.description, ConstraintSet.BOTTOM)
+                constraintSet.connect(R.id.description, ConstraintSet.TOP, R.id.backgroundImage, ConstraintSet.BOTTOM)
             }
+            constraintSet.applyTo(binding.constraintContainer)
 
         }
     }
