@@ -3,9 +3,12 @@ package ru.mingaleev.materialyou.view
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.transition.ArcMotion
 import androidx.transition.ChangeBounds
@@ -30,21 +33,22 @@ class AnimationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val title: MutableList<String> = ArrayList()
+        for (i in 0..4) {
+            title.add("Item $i")
+        }
+
         binding.button.setOnClickListener() {
             isFlag = !isFlag
-
-            val params = it.layoutParams as FrameLayout.LayoutParams
-
-            val changeBounds = ChangeBounds()
-            changeBounds.duration = 1000L
-            changeBounds.setPathMotion(ArcMotion())
-            TransitionManager.beginDelayedTransition(binding.root, changeBounds)
-            if (isFlag) {
-                params.gravity = Gravity.BOTTOM or Gravity.END
-            } else {
-                params.gravity = Gravity.TOP or Gravity.START
+            TransitionManager.beginDelayedTransition(binding.root)
+            binding.transitionContainer.removeAllViews()
+            title.shuffle()
+            title.forEach{
+                binding.transitionContainer.addView(TextView(context).apply {
+                    text = it
+                    ViewCompat.setTransitionName(this, it) //Задали псевдоним
+                })
             }
-            binding.button.layoutParams = params
         }
     }
 

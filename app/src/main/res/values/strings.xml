@@ -118,6 +118,7 @@
     <string name="transition_example">Transition example</string>
     <string name="tap_on_me">TAP ON ME</string>
     <string name="path">Path</string>
+    <string name="shuffle">SHUFFLE</string>
 
 
 </resources>
