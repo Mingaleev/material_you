@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import ru.mingaleev.materialyou.data.Data
 import ru.mingaleev.materialyou.data.TYPE_EARTH
 import ru.mingaleev.materialyou.data.TYPE_HEADER
@@ -43,6 +44,8 @@ class RecyclerFragment : Fragment() {
 
         adapter = RecyclerAdapter(data, callbackAdd, callbackRemove)
         binding.recyclerView.adapter = adapter
+
+        ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(binding.recyclerView)
     }
 
     private val callbackAdd = AddItem {

@@ -1,9 +1,12 @@
 package ru.mingaleev.materialyou.view.recycler
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.mingaleev.materialyou.R
 import ru.mingaleev.materialyou.data.Data
 import ru.mingaleev.materialyou.data.TYPE_EARTH
 import ru.mingaleev.materialyou.data.TYPE_MARS
@@ -15,7 +18,7 @@ class RecyclerAdapter(
     private var listData: MutableList<Pair<Data, Boolean>>,
     val callbackAdd: AddItem,
     val callbackRemove: RemoveItem
-) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>(), ItemTouchHelperAdapter {
 
     fun setListDataAdd(listDateNew: MutableList<Pair<Data, Boolean>>, position: Int) {
         listData = listDateNew
@@ -111,7 +114,26 @@ class RecyclerAdapter(
     }
 
     abstract class BaseViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) {
+        RecyclerView.ViewHolder(view), ItemTouchHelperViewHolder {
         abstract fun bind(data: Pair<Data, Boolean>)
+        @SuppressLint("ResourceAsColor")
+        override fun onItemSelect() {
+            itemView.setBackgroundColor(R.color.colorAccent)
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(0)
+        }
     }
-}
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+            listData.removeAt(fromPosition).apply {
+                listData.add(toPosition, this)
+            }
+            notifyItemMoved(fromPosition, toPosition)
+        }
+
+        override fun onItemDismiss(position: Int) {
+            callbackRemove.remove(position)
+        }
+    }
