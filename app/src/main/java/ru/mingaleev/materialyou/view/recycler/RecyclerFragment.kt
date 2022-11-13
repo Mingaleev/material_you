@@ -23,17 +23,17 @@ class RecyclerFragment : Fragment() {
     }
 
     private val data = arrayListOf(
-        Data( "Header", type = TYPE_HEADER),
-        Data( "Earth", type = TYPE_EARTH),
-        Data( "Earth", type = TYPE_EARTH),
-        Data( "Earth", type = TYPE_EARTH),
-        Data( "Earth", type = TYPE_EARTH),
-        Data( "Earth", type = TYPE_EARTH),
-        Data("Mars", "", type = TYPE_MARS),
-        Data( "Earth", type = TYPE_EARTH),
-        Data( "Earth", type = TYPE_EARTH),
-        Data( "Earth", type = TYPE_EARTH),
-        Data("Mars", type = TYPE_MARS)
+        Pair(Data("Header", type = TYPE_HEADER), false),
+        Pair(Data("Earth", type = TYPE_EARTH), false),
+        Pair(Data("Earth", type = TYPE_EARTH), false),
+        Pair(Data("Earth", type = TYPE_EARTH), false),
+        Pair(Data("Earth", type = TYPE_EARTH), false),
+        Pair(Data("Earth", type = TYPE_EARTH), false),
+        Pair(Data("Mars", "", type = TYPE_MARS), false),
+        Pair(Data("Earth", type = TYPE_EARTH), false),
+        Pair(Data("Earth", type = TYPE_EARTH), false),
+        Pair(Data("Earth", type = TYPE_EARTH), false),
+        Pair(Data("Mars", type = TYPE_MARS), false)
     )
 
     lateinit var adapter: RecyclerAdapter
@@ -46,7 +46,7 @@ class RecyclerFragment : Fragment() {
     }
 
     private val callbackAdd = AddItem {
-        data.add(it, Data("Mars (New)", type = TYPE_MARS))
+        data.add(it, Pair(Data("Mars (New)", type = TYPE_MARS), false))
         adapter.setListDataAdd(data,it)
     }
     private val callbackRemove = RemoveItem {

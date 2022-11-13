@@ -33,7 +33,7 @@
         "technologically advanced and open to imagination and magic.\n"
         "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
         "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
+        "flexibility of the material creates new affordances that supersede those in the physical "
         "world, without breaking the rules of physics.\n"
         "The fundamentals of light, surface, and movement are key to conveying how objects move, "
         "interact, and exist in space and in relation to each other. Realistic lighting shows "
@@ -119,6 +119,7 @@
     <string name="tap_on_me">TAP ON ME</string>
     <string name="path">Path</string>
     <string name="shuffle">SHUFFLE</string>
+    <string name="description_mars">Марс — четвёртая по удалённости от Солнца и седьмая по размерам планета Солнечнойсистемы. Названа в честь Марса — древнеримского бога войны, соответствующего древнегреческому Аресу. ИногдаМарс называют «красной планетой» из-за красноватого оттенка поверхности, придаваемого ей минералом маггемитом(оксидом железа).</string>
 
 
 </resources>

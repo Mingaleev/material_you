@@ -44,6 +44,18 @@
         app:layout_constraintStart_toEndOf="@+id/marsImageView"
         app:layout_constraintTop_toTopOf="@+id/marsImageView" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/marsDescriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/description_mars"
+        android:textColor="#000"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/marsImageView" />
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/addItemImageView"
         android:layout_width="wrap_content"
