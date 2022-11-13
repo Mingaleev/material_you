@@ -1,6 +1,7 @@
 package ru.mingaleev.materialyou.view.recycler
 
 import android.view.LayoutInflater
+import android.view.ScrollCaptureCallback
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,16 @@ import ru.mingaleev.materialyou.databinding.FragmentRecyclerItenEarthBinding
 import ru.mingaleev.materialyou.databinding.FragmentRecyclerItenHeaderBinding
 import ru.mingaleev.materialyou.databinding.FragmentRecyclerItenMarsBinding
 
-class RecyclerAdapter(private val listData: List<Data>) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+class RecyclerAdapter(private var listData: List<Data>, val callbackAdd: AddItem, val callbackRemove: RemoveItem) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+
+    fun setListDataAdd (listDateNew: List<Data>, position: Int) {
+        listData = listDateNew
+        notifyItemInserted(position)
+    }
+    fun setListDataRemove (listDateNew: List<Data>, position: Int) {
+        listData = listDateNew
+        notifyItemRemoved(position)
+    }
 
     override fun getItemViewType(position: Int): Int {
         return listData[position].type
@@ -42,10 +52,16 @@ class RecyclerAdapter(private val listData: List<Data>) : RecyclerView.Adapter<R
         return listData.size
     }
 
-    class MarsViewHolder(private val binding: FragmentRecyclerItenMarsBinding) :
+    inner class MarsViewHolder(private val binding: FragmentRecyclerItenMarsBinding) :
         BaseViewHolder(binding.root) {
         override fun bind(data: Data) {
             binding.name.text = data.name
+            binding.addItemImageView.setOnClickListener {
+                callbackAdd.add(adapterPosition)
+            }
+            binding.removeItemImageView.setOnClickListener {
+                callbackRemove.remove(adapterPosition)
+            }
         }
     }
 

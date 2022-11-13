@@ -22,24 +22,36 @@ class RecyclerFragment : Fragment() {
         return binding.root
     }
 
+    private val data = arrayListOf(
+        Data( "Header", type = TYPE_HEADER),
+        Data( "Earth", type = TYPE_EARTH),
+        Data( "Earth", type = TYPE_EARTH),
+        Data( "Earth", type = TYPE_EARTH),
+        Data( "Earth", type = TYPE_EARTH),
+        Data( "Earth", type = TYPE_EARTH),
+        Data("Mars", "", type = TYPE_MARS),
+        Data( "Earth", type = TYPE_EARTH),
+        Data( "Earth", type = TYPE_EARTH),
+        Data( "Earth", type = TYPE_EARTH),
+        Data("Mars", type = TYPE_MARS)
+    )
+
+    lateinit var adapter: RecyclerAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val data = arrayListOf(
-            Data( "Header", type = TYPE_HEADER),
-            Data( "Earth", type = TYPE_EARTH),
-            Data( "Earth", type = TYPE_EARTH),
-            Data( "Earth", type = TYPE_EARTH),
-            Data( "Earth", type = TYPE_EARTH),
-            Data( "Earth", type = TYPE_EARTH),
-            Data("Mars", "", type = TYPE_MARS),
-            Data( "Earth", type = TYPE_EARTH),
-            Data( "Earth", type = TYPE_EARTH),
-            Data( "Earth", type = TYPE_EARTH),
-            Data("Mars", type = TYPE_MARS)
-        )
+        adapter = RecyclerAdapter(data, callbackAdd, callbackRemove)
+        binding.recyclerView.adapter = adapter
+    }
 
-        binding.recyclerView.adapter = RecyclerAdapter(data)
+    private val callbackAdd = AddItem {
+        data.add(it, Data("Mars (New)", type = TYPE_MARS))
+        adapter.setListDataAdd(data,it)
+    }
+    private val callbackRemove = RemoveItem {
+        data.removeAt(it)
+        adapter.setListDataRemove(data,it)
     }
 
     override fun onDestroyView() {
