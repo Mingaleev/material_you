@@ -5,6 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ru.mingaleev.materialyou.data.Data
+import ru.mingaleev.materialyou.data.TYPE_EARTH
+import ru.mingaleev.materialyou.data.TYPE_HEADER
+import ru.mingaleev.materialyou.data.TYPE_MARS
 import ru.mingaleev.materialyou.databinding.FragmentRecyclerBinding
 
 class RecyclerFragment : Fragment() {

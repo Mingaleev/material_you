@@ -1,4 +1,4 @@
-package ru.mingaleev.materialyou.view.recycler
+package ru.mingaleev.materialyou.data
 
 const val TYPE_EARTH = 1
 const val TYPE_MARS = 2
