@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import ru.mingaleev.materialyou.databinding.ActivityMainBinding
 import ru.mingaleev.materialyou.view.*
 import ru.mingaleev.materialyou.view.picture.ViewPagerFragment
+import ru.mingaleev.materialyou.view.recycler.RecyclerFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                     navigateTo(EarthFragment()); true
                 }
                 R.id.bottom_view_animation_image -> {
-                    navigateTo(AnimationImageZoomFragment()); true
+                    navigateTo(RecyclerFragment()); true
                 }
                 R.id.bottom_view_constraint -> {
                     navigateTo(CoordinatorFragment()); true
