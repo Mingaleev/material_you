@@ -1,7 +1,6 @@
 package ru.mingaleev.materialyou.view.recycler
 
 import android.view.LayoutInflater
-import android.view.ScrollCaptureCallback
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +11,18 @@ import ru.mingaleev.materialyou.databinding.FragmentRecyclerItenEarthBinding
 import ru.mingaleev.materialyou.databinding.FragmentRecyclerItenHeaderBinding
 import ru.mingaleev.materialyou.databinding.FragmentRecyclerItenMarsBinding
 
-class RecyclerAdapter(private var listData: List<Data>, val callbackAdd: AddItem, val callbackRemove: RemoveItem) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+class RecyclerAdapter(
+    private var listData: MutableList<Data>,
+    val callbackAdd: AddItem,
+    val callbackRemove: RemoveItem
+) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
 
-    fun setListDataAdd (listDateNew: List<Data>, position: Int) {
+    fun setListDataAdd(listDateNew: MutableList<Data>, position: Int) {
         listData = listDateNew
         notifyItemInserted(position)
     }
-    fun setListDataRemove (listDateNew: List<Data>, position: Int) {
+
+    fun setListDataRemove(listDateNew: MutableList<Data>, position: Int) {
         listData = listDateNew
         notifyItemRemoved(position)
     }
@@ -56,11 +60,29 @@ class RecyclerAdapter(private var listData: List<Data>, val callbackAdd: AddItem
         BaseViewHolder(binding.root) {
         override fun bind(data: Data) {
             binding.name.text = data.name
+
             binding.addItemImageView.setOnClickListener {
-                callbackAdd.add(adapterPosition)
+                callbackAdd.add(layoutPosition)
             }
             binding.removeItemImageView.setOnClickListener {
-                callbackRemove.remove(adapterPosition)
+                callbackRemove.remove(layoutPosition)
+            }
+
+            binding.moveItemUp.setOnClickListener {
+                if (layoutPosition > 1) {
+                    listData.removeAt(layoutPosition).apply {
+                        listData.add(layoutPosition - 1, this)
+                    }
+                    notifyItemMoved(layoutPosition, layoutPosition - 1)
+                }
+            }
+            binding.moveItemDown.setOnClickListener {
+                if (layoutPosition < listData.size - 1) {
+                    listData.removeAt(layoutPosition).apply {
+                        listData.add(layoutPosition + 1, this)
+                    }
+                    notifyItemMoved(layoutPosition, layoutPosition + 1)
+                }
             }
         }
     }

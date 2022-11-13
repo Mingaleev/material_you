@@ -12,6 +12,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bg_mars" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/moveItemUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:tint="@color/design_default_color_error"
+        app:layout_constraintBottom_toBottomOf="@+id/name"
+        app:layout_constraintEnd_toStartOf="@+id/moveItemDown"
+        app:layout_constraintTop_toTopOf="@+id/name"
+        app:srcCompat="@android:drawable/arrow_up_float" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/moveItemDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:tint="@color/design_default_color_error"
+        app:layout_constraintBottom_toBottomOf="@+id/name"
+        app:layout_constraintEnd_toStartOf="@+id/addItemImageView"
+        app:layout_constraintTop_toTopOf="@+id/name"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
