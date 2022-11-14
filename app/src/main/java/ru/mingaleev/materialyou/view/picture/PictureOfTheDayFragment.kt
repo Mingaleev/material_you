@@ -1,15 +1,14 @@
 package ru.mingaleev.materialyou.view.picture
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsetsAnimation.Bounds
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.transition.ChangeImageTransform
 import androidx.transition.TransitionManager
 import coil.load
 import ru.mingaleev.materialyou.R
@@ -73,6 +72,7 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                     toast(getString(R.string.error_no_explanation))
                 } else {
                     binding.explanation.text = serverResponseData.explanation
+                    binding.explanation.typeface = Typeface.createFromAsset(activity?.assets, "font/roboto_slab.ttf")
                 }
             }
             is PictureOfTheDayData.Loading -> {
