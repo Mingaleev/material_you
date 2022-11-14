@@ -4,6 +4,12 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.BulletSpan
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,6 +79,37 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                 } else {
                     binding.explanation.text = serverResponseData.explanation
                     binding.explanation.typeface = Typeface.createFromAsset(activity?.assets, "font/roboto_slab.ttf")
+
+                    val spanned: Spanned
+                    val spannableString: SpannableString
+                    val spannableStringBuilder: SpannableStringBuilder
+
+                    val text = "My text \nbullet one \nbullet two"
+                    spannableString = SpannableString(text)
+
+                    val bulletSpanOne = BulletSpan(20, resources.getColor(R.color.colorAccent))
+                    val bulletSpanTwo = BulletSpan(20, resources.getColor(R.color.colorAccent))
+                    val colorSpan = ForegroundColorSpan(resources.getColor(R.color.colorAccent))
+
+                    spannableString.setSpan(colorSpan, 9, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                    spannableString.setSpan(
+                        bulletSpanOne, 9, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+
+                    spannableString.setSpan(
+                        bulletSpanTwo, 21, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+
+                    for (i in text.indices) {
+                        if (text[i] == 't') {
+                            spannableString.setSpan(
+                                resources.getColor(R.color.colorAccent),
+                                i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                            )
+                        }
+                    }
+                    binding.explanation.text = spannableString
                 }
             }
             is PictureOfTheDayData.Loading -> {
