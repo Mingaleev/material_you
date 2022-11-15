@@ -80,36 +80,10 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                     binding.explanation.text = serverResponseData.explanation
                     binding.explanation.typeface = Typeface.createFromAsset(activity?.assets, "font/roboto_slab.ttf")
 
-                    val spanned: Spanned
-                    val spannableString: SpannableString
-                    val spannableStringBuilder: SpannableStringBuilder
+                    val text = "My text \nbullet one \nbullet two \nbullet oneasf \nbullet two \nbullet oneasfscc " +
+                            "\nbullet two \nbullet oneaf \nbullet twoasf \nbullet one \nbullet twofgerfds"
 
-                    val text = "My text \nbullet one \nbullet two"
-                    spannableString = SpannableString(text)
-
-                    val bulletSpanOne = BulletSpan(20, resources.getColor(R.color.colorAccent))
-                    val bulletSpanTwo = BulletSpan(20, resources.getColor(R.color.colorAccent))
-                    val colorSpan = ForegroundColorSpan(resources.getColor(R.color.colorAccent))
-
-                    spannableString.setSpan(colorSpan, 9, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-                    spannableString.setSpan(
-                        bulletSpanOne, 9, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-
-                    spannableString.setSpan(
-                        bulletSpanTwo, 21, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-
-                    for (i in text.indices) {
-                        if (text[i] == 't') {
-                            spannableString.setSpan(
-                                resources.getColor(R.color.colorAccent),
-                                i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-                            )
-                        }
-                    }
-                    binding.explanation.text = spannableString
+                    binding.explanation.text = setSpan(text)
                 }
             }
             is PictureOfTheDayData.Loading -> {
@@ -120,6 +94,45 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
             }
         }
     }
+
+    fun setSpan (text: String): SpannableString {
+        val spanned: Spanned
+        val spannableString: SpannableString
+        val spannableStringBuilder: SpannableStringBuilder
+
+        spannableString = SpannableString(text)
+
+        val result = text.indexesOf("\n")
+        var current = result.first()
+
+        result.forEach {
+            if (current != it) {
+                spannableString.setSpan(BulletSpan(20, resources.getColor(R.color.colorAccent)),
+                    current + 1, it, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+            current = it
+        }
+        spannableString.setSpan(BulletSpan(20, resources.getColor(R.color.colorAccent)),
+            result.last() + 1, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        val colorSpan = ForegroundColorSpan(resources.getColor(R.color.colorAccent))
+        spannableString.setSpan(colorSpan, 9, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        for (i in text.indices) {
+            if (text[i] == 't') {
+                spannableString.setSpan(
+                    resources.getColor(R.color.colorAccent),
+                    i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
+
+        return spannableString
+    }
+
+    fun String.indexesOf(substr: String, ignoreCase: Boolean = true): List<Int> =
+        (if (ignoreCase) Regex(substr, RegexOption.IGNORE_CASE) else Regex(substr))
+            .findAll(this).map { it.range.first }.toList()
 
     override fun onDestroyView() {
         super.onDestroyView()
