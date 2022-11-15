@@ -3,17 +3,24 @@ package ru.mingaleev.materialyou.view.picture
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.BulletSpan
 import android.text.style.ForegroundColorSpan
+import android.text.style.TypefaceSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.core.provider.FontRequest
+import androidx.core.provider.FontsContractCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionManager
@@ -96,7 +103,7 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
         }
     }
 
-    private fun setSpanForExplanation (text: String): SpannableStringBuilder {
+    private fun setSpanForExplanation (text: String) {
         val spanned: Spanned
         val spannableString: SpannableString
         var spannableStringBuilder: SpannableStringBuilder
@@ -130,7 +137,23 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
             }
         }
 
-        return spannableStringBuilder
+        val fontRequest = FontRequest("com.google.android.gms.fonts", "com.google.android.gms",
+        "Cabin Sketch", R.array.com_google_android_gms_fonts_certs)
+
+        val callbackFontRequest = object : FontsContractCompat.FontRequestCallback() {
+            @RequiresApi(Build.VERSION_CODES.P)
+            override fun onTypefaceRetrieved(typeface: Typeface?) {
+                typeface?.let {
+                    spannableStringBuilder.setSpan(
+                        TypefaceSpan(it), 0, spannableStringBuilder.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                super.onTypefaceRetrieved(typeface)
+            }
+        }
+
+        this.context?.let { FontsContractCompat
+            .requestFont(it, fontRequest, callbackFontRequest, Handler(Looper.getMainLooper())) }
     }
 
     private fun String.indexesOf(substr: String, ignoreCase: Boolean = true): List<Int> =
