@@ -13,6 +13,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionManager
@@ -83,7 +84,7 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                     val text = "My text \nbullet one \nbullet two \nbullet oneasf \nbullet two \nbullet oneasfscc " +
                             "\nbullet two \nbullet oneaf \nbullet twoasf \nbullet one \nbullet twofgerfds"
 
-                    binding.explanation.text = setSpanForExplanation(text)
+                    setSpanForExplanation(text)
                 }
             }
             is PictureOfTheDayData.Loading -> {
@@ -98,10 +99,11 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
     private fun setSpanForExplanation (text: String): SpannableStringBuilder {
         val spanned: Spanned
         val spannableString: SpannableString
-        val spannableStringBuilder: SpannableStringBuilder
+        var spannableStringBuilder: SpannableStringBuilder
 
         spannableStringBuilder = SpannableStringBuilder(text)
-        spannableStringBuilder.insert(3, "d")
+        binding.explanation.setText(spannableStringBuilder, TextView.BufferType.EDITABLE)
+        spannableStringBuilder = binding.explanation.text as SpannableStringBuilder
 
         val result = text.indexesOf("\n")
         var current = result.first()
@@ -127,8 +129,6 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                 )
             }
         }
-
-
 
         return spannableStringBuilder
     }
