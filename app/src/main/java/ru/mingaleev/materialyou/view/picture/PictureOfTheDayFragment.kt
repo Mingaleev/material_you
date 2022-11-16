@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.text.Spannable
@@ -35,6 +36,7 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
     private val setDate = date
+    lateinit var spannableStringTitle: SpannableString
 
     //Ленивая инициализация модели
     private val viewModel: PictureOfTheDayViewModel by lazy {
@@ -79,7 +81,8 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                 if (serverResponseData.title.isNullOrEmpty()){
                     toast(getString(R.string.error_no_title))
                 } else {
-                    binding.title.text = serverResponseData.title
+                    spannableStringTitle = SpannableString(serverResponseData.title)
+                    rainbow()
                 }
 
                 if (serverResponseData.explanation.isNullOrEmpty()){
@@ -100,6 +103,49 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
             is PictureOfTheDayData.Error -> {
                 toast(data.error.message)
             }
+        }
+    }
+
+    private fun rainbow () {
+        binding.title.setText(spannableStringTitle, TextView.BufferType.SPANNABLE)
+        spannableStringTitle = binding.title.text as SpannableString
+
+        var currentCount = 0
+        val x = object : CountDownTimer(2000, 200) {
+            override fun onTick(millisUntilFinished: Long) {
+                setSpanForTitle(currentCount)
+                currentCount = if (++currentCount > 6) 0 else currentCount
+            }
+
+            override fun onFinish() {
+                rainbow()
+            }
+        }
+        x.start()
+    }
+
+    private fun setSpanForTitle (firstColor: Int) {
+        val rainbowColors = arrayListOf(
+            resources.getColor(R.color.rainbow_red),
+            resources.getColor(R.color.rainbow_orange),
+            resources.getColor(R.color.rainbow_yellow),
+            resources.getColor(R.color.rainbow_green),
+            resources.getColor(R.color.rainbow_blue),
+            resources.getColor(R.color.rainbow_indigo),
+            resources.getColor(R.color.rainbow_violet)
+        )
+
+        val spans = spannableStringTitle
+            .getSpans(0, spannableStringTitle.length, ForegroundColorSpan::class.java)
+        for (span in spans) {
+            spannableStringTitle.removeSpan(span)
+        }
+
+        var colorNumber = firstColor
+        for (i in spannableStringTitle.indices) {
+            if (colorNumber > 5) colorNumber = 0 else colorNumber += 1
+            spannableStringTitle.setSpan(ForegroundColorSpan(rainbowColors[colorNumber]),
+                i, i + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
     }
 

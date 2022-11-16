@@ -20,4 +20,14 @@
     <color name="pink">#e040fb</color>
     <color name="pink_dark">#aa00c7</color>
     <color name="pink_light">#ff79ff</color>
+
+    <color name="rainbow_red">#ff0000</color>
+    <color name="rainbow_orange">#ffa500</color>
+    <color name="rainbow_yellow">#ffff00</color>
+    <color name="rainbow_green">#008000</color>
+    <color name="rainbow_blue">#0000ff</color>
+    <color name="rainbow_indigo">#4b0082</color>
+    <color name="rainbow_violet">#ee82ee</color>
+
+
 </resources>
