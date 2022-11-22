@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialYou">
+        <item name="colorPrimary">?themeColorPrimary</item>
+        <item name="textColorConnected">@color/green</item>
+        <item name="textColorDisConnected">@color/light_gray</item>
+        <item name="android:windowSplashScreenBackground">@color/light_gray</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/black</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/ic_splash_screen</item>
+    </style>
+</resources>

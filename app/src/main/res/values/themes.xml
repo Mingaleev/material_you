@@ -30,6 +30,10 @@
 <!--        <item name="android:fontFamily">@font/roboto_slab</item>-->
     </style>
 
+    <style name="Splash" parent="Theme.MaterialYou">
+        <item name="android:windowBackground">@drawable/splash_background_drawable</item>
+    </style>
+
     <style name="AppTheme" parent="Theme.MaterialYou">
         <item name="colorPrimary">?themeColorPrimary</item>
         <item name="textColorConnected">@color/pink</item>

@@ -94,7 +94,7 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                     val text = "My text \nbullet one \nbullet two \nbullet oneasf \nbullet two \nbullet oneasfscc " +
                             "\nbullet two \nbullet oneaf \nbullet twoasf \nbullet one \nbullet twofgerfds"
 
-                    setSpanForExplanation(text)
+//                    setSpanForExplanation(text)
                 }
             }
             is PictureOfTheDayData.Loading -> {
@@ -121,7 +121,7 @@ class PictureOfTheDayFragment (date: String) : Fragment() {
                 rainbow()
             }
         }
-        x.start()
+//        x.start()
     }
 
     private fun setSpanForTitle (firstColor: Int) {
